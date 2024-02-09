@@ -20,7 +20,19 @@ fetch("https://api.coingecko.com/api/v3/coins/dogecoin")
     }
     return res.json();
   })
-  .then((data) => console.log(data))
+  .then((data) => {
+    console.log(data.name)
+    document.getElementById("crypto-top").innerHTML = `
+            <img src=${data.image.small} />
+            <span>${data.name}</span>
+        `;
+
+    document.getElementById("crypto").innerHTML += `
+            <p>🎯: ${data.market_data.current_price.usd}</p>
+            <p>👆: </p>
+            <p>👇: </p>
+        `;
+  })
   .catch((err) => {
     document.getElementById("crypto").textContent =
       "Not available at this moment";
