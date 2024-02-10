@@ -1,3 +1,5 @@
+// get picture
+
 fetch(
   "https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=natfdfdure"
 )
@@ -13,6 +15,8 @@ fetch(
     document.getElementById("author").textContent = `By: John Lee`;
   });
 
+
+  // get crypto
 fetch("https://api.coingecko.com/api/v3/coins/dogecoin")
   .then((res) => {
     if (!res.ok) {
@@ -38,3 +42,14 @@ fetch("https://api.coingecko.com/api/v3/coins/dogecoin")
       "Not available at this moment";
     console.error(err);
   }); 
+
+
+// get time and update it every second
+
+function getCurrentTime() {
+  const currentDate = new Date().toLocaleTimeString('en-us', {timeStyle: 'short'});
+  document.getElementById('time').textContent = currentDate
+  
+}
+
+setInterval(getCurrentTime, 1000)
