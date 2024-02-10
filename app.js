@@ -15,8 +15,7 @@ fetch(
     document.getElementById("author").textContent = `By: John Lee`;
   });
 
-
-  // get crypto
+// get crypto
 fetch("https://api.coingecko.com/api/v3/coins/dogecoin")
   .then((res) => {
     if (!res.ok) {
@@ -25,7 +24,7 @@ fetch("https://api.coingecko.com/api/v3/coins/dogecoin")
     return res.json();
   })
   .then((data) => {
-    console.log(data.name)
+    console.log(data.name);
     document.getElementById("crypto-top").innerHTML = `
             <img src=${data.image.small} />
             <span>${data.name}</span>
@@ -41,15 +40,31 @@ fetch("https://api.coingecko.com/api/v3/coins/dogecoin")
     document.getElementById("crypto").textContent =
       "Not available at this moment";
     console.error(err);
-  }); 
-
+  });
 
 // get time and update it every second
 
 function getCurrentTime() {
-  const currentDate = new Date().toLocaleTimeString('en-us', {timeStyle: 'short'});
-  document.getElementById('time').textContent = currentDate
-  
+  const currentDate = new Date().toLocaleTimeString("en-us", {
+    timeStyle: "short",
+  });
+  document.getElementById("time").textContent = currentDate;
 }
 
-setInterval(getCurrentTime, 1000)
+setInterval(getCurrentTime, 1000);
+
+//get current position
+navigator.geolocation
+  .getCurrentPosition((position) => {
+    fetch(
+      `https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=imperial`
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw Error("Weather data not available");
+        }
+        return res.json();
+      })
+      .then((data) => console.log(data));
+  })
+  .catch((err) => console.error(err));
