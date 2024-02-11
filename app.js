@@ -54,17 +54,21 @@ function getCurrentTime() {
 setInterval(getCurrentTime, 1000);
 
 //get current position
-navigator.geolocation
-  .getCurrentPosition((position) => {
-    fetch(
-      `https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=imperial`
-    )
-      .then((res) => {
-        if (!res.ok) {
-          throw Error("Weather data not available");
-        }
-        return res.json();
-      })
-      .then((data) => console.log(data));
-  })
-  .catch((err) => console.error(err));
+navigator.geolocation.getCurrentPosition((position) => {
+  fetch(
+    `https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=imperial`
+  )
+    .then((res) => {
+      if (!res.ok) {
+        throw Error("Weather data not available");
+      }
+      return res.json();
+    })
+    .then((data) => {
+      const iconUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
+      document.getElementById("weather").innerHTML = `
+        <img src=${iconUrl} />
+        `;
+    })
+    .catch((err) => console.error(err));
+});
