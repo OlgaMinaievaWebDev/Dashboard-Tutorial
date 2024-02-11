@@ -17,7 +17,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 2rem;
 }
 
 .top {
@@ -27,6 +27,7 @@ main {
 
 h1#time {
   text-align: center;
+  font-size: 5rem;
 }
 
 div#crypto {
@@ -55,8 +56,13 @@ div#weather {
   width: 100%;
   text-align: right;
   margin-top: -15px;
+  font-size: 1.2rem;
 }
 
 div#weather > img {
   width: 70px;
+}
+
+#author {
+    font-size: 1.2rem;
 }
