@@ -1,7 +1,7 @@
 // get picture
 
 fetch(
-  "https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=natfdfdure"
+  "https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=natuhghjfhkfkfre"
 )
   .then((res) => res.json())
   .then((data) => {
@@ -68,6 +68,8 @@ navigator.geolocation.getCurrentPosition((position) => {
       const iconUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
       document.getElementById("weather").innerHTML = `
         <img src=${iconUrl} />
+        <p>${Math.round(data.main.temp)}º</p>
+        <p>${data.name}</p>
         `;
     })
     .catch((err) => console.error(err));
